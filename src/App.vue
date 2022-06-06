@@ -1,9 +1,8 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+    <div class="container" v-if="currentRouteName !== 'login' && currentRouteName !== 'register'">
+      <NavBar/>
+    </div>
     <router-view/>
   </div>
 </template>
@@ -30,3 +29,24 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
+<script>
+import NavBar from "@/components/NavBar";
+import API from "@/config/API";
+
+export default {
+  components: {
+    NavBar
+  },
+  data()
+  {
+    return{
+      todos: {}
+    }
+  },
+  computed: {
+    currentRouteName() {
+        return this.$route.name;
+    },
+  },
+}
+</script>
